@@ -10,7 +10,7 @@ Goal: a client sees, without narration, that the bridge is real, tested, and wor
 | 0:30 | Switch to Claude Desktop. Click the tools icon, show the two tools listed. | "Same server in Claude Desktop." |
 | 0:36 | Ask: "What is the weather in Victoria, BC right now and tomorrow?" Approve the tool call. | |
 | 0:48 | The answer appears with the Open-Meteo disclaimer line. | "Disclaimer attached to every response." |
-| 0:54 | Back to terminal: `wc -l src/*.ts` (about 350 lines). End on the GitHub repo page. | "Small enough to audit before you trust it." |
+| 0:54 | Back to terminal: `wc -l src/*.ts` (about 440 lines). End on the GitHub repo page. | "Small enough to audit before you trust it." |
 
 Prep: `pnpm build`, add the Claude Desktop config from the README with absolute paths, restart Claude Desktop, confirm the tools appear before recording. Window size 1280x720, dark terminal, font 16pt.
 
