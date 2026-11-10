@@ -1,0 +1,28 @@
+{
+  "name": "mcp-api-bridge",
+  "version": "0.1.0",
+  "description": "Wrap any HTTP API as a Model Context Protocol server from one config file: validation, timeouts, error mapping, image responses, disclaimers, tests.",
+  "license": "MIT",
+  "author": "QQAI.AI Inc.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "bin": { "mcp-api-bridge": "dist/cli.js" },
+  "files": ["dist", "examples", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import tsx --test test/*.test.ts",
+    "start": "node --import tsx src/cli.ts",
+    "smoke": "node --import tsx scripts/smoke-open-meteo.ts",
+    "inspect": "npx -y @modelcontextprotocol/inspector@2.14.0 --cli -e MCP_API_BRIDGE_CONFIG=examples/open-meteo.json node --import tsx src/cli.ts --method tools/list"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}

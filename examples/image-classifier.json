@@ -1,0 +1,41 @@
+{
+  "name": "image-classifier-bridge",
+  "version": "0.1.0",
+  "disclaimer": "Research prototype for internal evaluation only. Not for clinical or production decisions.",
+  "tools": [
+    {
+      "name": "classify_image",
+      "description": "Classify one image and return label, confidence and model version. Give exactly one of image_path (a file on this machine) or image_base64. Call explain_prediction afterwards if a heatmap is wanted.",
+      "method": "POST",
+      "path": "/v1/predict",
+      "inputs": {
+        "image_path": { "type": "file", "in": "multipart", "fieldName": "file", "optional": true, "mimeType": "image/png", "description": "Absolute path to a PNG or JPEG" },
+        "image_base64": { "type": "base64", "in": "multipart", "fieldName": "file", "optional": true, "mimeType": "image/png", "fileName": "image.png", "description": "Base64 PNG or JPEG, with or without a data: prefix" }
+      },
+      "exactlyOneOf": [["image_path", "image_base64"]],
+      "response": { "pick": ["label", "confidence", "model_version"] },
+      "annotations": { "readOnlyHint": true },
+      "retryOnce": true
+    },
+    {
+      "name": "explain_prediction",
+      "description": "Return the Grad-CAM heatmap for one image as a displayable picture plus a one-line summary. Give exactly one of image_path or image_base64.",
+      "method": "POST",
+      "path": "/v1/explain",
+      "inputs": {
+        "image_path": { "type": "file", "in": "multipart", "fieldName": "file", "optional": true, "mimeType": "image/png" },
+        "image_base64": { "type": "base64", "in": "multipart", "fieldName": "file", "optional": true, "mimeType": "image/png", "fileName": "image.png" }
+      },
+      "exactlyOneOf": [["image_path", "image_base64"]],
+      "response": { "image": { "dataField": "heatmap_png_base64", "mimeType": "image/png", "summaryField": "summary" } },
+      "annotations": { "readOnlyHint": true }
+    },
+    {
+      "name": "get_model_info",
+      "description": "Model name, version, expected input size and decision threshold. No inputs.",
+      "method": "GET",
+      "path": "/v1/model",
+      "annotations": { "readOnlyHint": true }
+    }
+  ]
+}

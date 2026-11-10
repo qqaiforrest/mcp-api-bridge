@@ -1,0 +1,36 @@
+{
+  "name": "open-meteo-bridge",
+  "version": "0.1.0",
+  "baseUrl": "https://api.open-meteo.com",
+  "disclaimer": "Data from Open-Meteo (CC BY 4.0). Forecasts are estimates, not guarantees.",
+  "tools": [
+    {
+      "name": "get_current_weather",
+      "description": "Current temperature, wind and weather code for one location given as latitude and longitude. Use get_daily_forecast when the question is about coming days.",
+      "method": "GET",
+      "path": "/v1/forecast",
+      "fixedQuery": { "current_weather": "true" },
+      "inputs": {
+        "latitude": { "type": "number", "in": "query", "min": -90, "max": 90, "description": "Decimal degrees, north positive" },
+        "longitude": { "type": "number", "in": "query", "min": -180, "max": 180, "description": "Decimal degrees, east positive" },
+        "temperature_unit": { "type": "enum", "in": "query", "enum": ["celsius", "fahrenheit"], "optional": true }
+      },
+      "response": { "pick": ["latitude", "longitude", "timezone", "current_weather"] },
+      "annotations": { "readOnlyHint": true, "openWorldHint": true }
+    },
+    {
+      "name": "get_daily_forecast",
+      "description": "Daily maximum and minimum temperature and precipitation sum for the next 1 to 7 days at one location.",
+      "method": "GET",
+      "path": "/v1/forecast",
+      "fixedQuery": { "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum", "timezone": "auto" },
+      "inputs": {
+        "latitude": { "type": "number", "in": "query", "min": -90, "max": 90 },
+        "longitude": { "type": "number", "in": "query", "min": -180, "max": 180 },
+        "forecast_days": { "type": "integer", "in": "query", "min": 1, "max": 7, "optional": true, "description": "Defaults to 7" }
+      },
+      "response": { "pick": ["timezone", "daily"] },
+      "annotations": { "readOnlyHint": true, "openWorldHint": true }
+    }
+  ]
+}
