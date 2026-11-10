@@ -4,6 +4,14 @@ Wrap any HTTP API as a Model Context Protocol (MCP) server from one JSON config 
 Built on the official `@modelcontextprotocol/sdk` (TypeScript, stdio transport) with the details clients ask for: input validation, timeouts, specific error messages, image responses, disclaimers, and a test suite against a mocked upstream.
 Small enough to read in ten minutes and audit before you point it at a real API.
 
+## 60-second demo
+
+https://github.com/qqaiforrest/mcp-api-bridge/raw/main/docs/demo.mp4
+
+[![demo poster](docs/demo-poster.jpg)](https://github.com/qqaiforrest/mcp-api-bridge/raw/main/docs/demo.mp4)
+
+Tests passing, one tool config, the MCP Inspector calling Open-Meteo through the bridge, the Claude Desktop config. Every frame is real output from this repo; the clip is assembled from those captures, not narrated.
+
 ## 60-second quickstart
 
 ```bash

@@ -15,3 +15,7 @@ Goal: a client sees, without narration, that the bridge is real, tested, and wor
 Prep: `pnpm build`, add the Claude Desktop config from the README with absolute paths, restart Claude Desktop, confirm the tools appear before recording. Window size 1280x720, dark terminal, font 16pt.
 
 For the image example (`examples/image-classifier.json`) a second 30-second clip can show `explain_prediction` returning a heatmap inline in Claude Desktop once a real or mock classifier is running on `API_BASE_URL`.
+
+
+## Recorded 2026-11-10
+`docs/demo.mp4` (60 s, 1280x720, 0.6 MB). Built from real captures: `pnpm test` output, `examples/open-meteo.json`, MCP Inspector 2.14 (connect, form, live result with disclaimer), the Claude Desktop config block, and the GitHub page. Claude Desktop itself was not recorded because restarting it would have killed the working session; redo that scene when a second machine is available.
